@@ -36,7 +36,7 @@ function bsm_admin(){
                 . 'END ASC, id ASC;';
 	$res = $wpdb->get_results($q);
 ?>
-<link href="/web/wp-content/plugins/bs-medallions/admin.css" rel="stylesheet" type="text/css" media="all">
+<link href="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/admin.css" rel="stylesheet" type="text/css" media="all">
 <div class="wrap">
   <div id="bsshow"></div>
   <!--div id="bsnavs">
@@ -146,14 +146,14 @@ foreach($res as $r){
 	</div>
   </div>
   <div class="nvbx"><em>Brought to you by nvbach91</em></div>
-  <script src="/web/wp-content/plugins/bs-medallions/bsremove.js"></script>
-  <script src="/web/wp-content/plugins/bs-medallions/bsadd.js"></script>
-  <script src="/web/wp-content/plugins/bs-medallions/bssave.js"></script>
-  <script src="/web/wp-content/plugins/bs-medallions/bsreload.js"></script>
-  <script src="/web/wp-content/plugins/bs-medallions/bssearch.js"></script>
-  <script src="/web/wp-content/plugins/bs-medallions/bsupload.js"></script>
-  <script src="/web/wp-content/plugins/bs-medallions/bsexpandncollapse.js"></script>
-  <script src="/web/wp-content/plugins/bs-medallions/navmouseshow.js"></script>
+  <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/bsremove.js"></script>
+  <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/bsadd.js"></script>
+  <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/bssave.js"></script>
+  <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/bsreload.js"></script>
+  <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/bssearch.js"></script>
+  <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/bsupload.js"></script>
+  <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/bsexpandncollapse.js"></script>
+  <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/navmouseshow.js"></script>
 </div>
 <?php
 }
@@ -271,7 +271,9 @@ function add_medallions_codes($atts) {
 	if($isCS){$clickme='Víc o mně';$ecx='Sbalit vše';}	
 	$ec = '<div id="e-c" class=""></div><div id="ec">'.$ecx.'</div><div id="bstooltip">'.$clickme.'</div>';	
 	
-	return $ec . ' ' . $leaders . ' ' . $process . '<script src="/web/wp-content/plugins/bs-medallions/leadertitle.js"></script><script src="/web/wp-content/plugins/bs-medallions/interactions.js"></script>';
+	return $ec . ' ' . $leaders . ' ' . $process . 
+	'<script src="/'.explode("/", $_SERVER['REQUEST_URI'])[1].'/wp-content/plugins/bs-medallions/leadertitle.js"></script>'.
+	'<script src="/'.explode("/", $_SERVER['REQUEST_URI'])[1].'/wp-content/plugins/bs-medallions/interactions.js"></script>';
 }
 
 function getLeaderName($pos){	
@@ -295,7 +297,7 @@ function getLeaders($isCS){
 		  <div class="bpname no">'.$bpname.'</div>
 		  <div class="bpmembers no">
 		    <div class="bpmember">
-			  <div class="bpimg"><img src="/web/members/'.$pr.'1.png" alt="l_'.$pr.'1" /></div>
+			  <div class="bpimg"><img src="/'.explode("/", $_SERVER['REQUEST_URI'])[1].'/members/'.$pr.'1.png" alt="l_'.$pr.'1" /></div>
 			  <div class="membercap">'.$name.'</div>
 			</div>
 	      </div>
@@ -340,7 +342,7 @@ function getProcesses($isCS){
 		foreach($names as $n){
 		    $p = $p.'
 			<div class="bpmember">
-		      <div class="bpimg"><img src="/web/members/'.$pr.$k.'.png" alt="'.$pr.$k.'" /></div>
+		      <div class="bpimg"><img src="/'.explode("/", $_SERVER['REQUEST_URI'])[1].'/members/'.$pr.$k.'.png" alt="'.$pr.$k.'" /></div>
 			  <div class="membercap">'.$n->name.'</div>
             </div>';
 			$k++;

@@ -61,7 +61,7 @@ function ajax_getbio(pid){
   var biotext="Hey dude, have a nice day! (:";
   jQuery.ajax({
     async: false,
-    url: "/web/wp-content/plugins/bs-medallions/bio_server.php",
+    url: "/" + document.location.pathname.split("/")[1] + "/wp-content/plugins/bs-medallions/bio_server.php",
     data: "position="+pid+"&lang="+lang,
     type: "post",
     success: function(resp) {biotext=resp;},

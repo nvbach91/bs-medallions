@@ -17,14 +17,14 @@ jQuery(document).ready(function(){
 		   left:  mouseX,
 		   top:   mouseY
 		});
-	});  
+	});
 
 	jQuery(".bspic").each(function(){
 		  var bspic=jQuery(this);
 		  var imgname=bspic.find('input').val();
 		  bspic.mouseover(function(){
 			  var d = new Date();
-			  jQuery('#bsshow').css("background-image","url('/web/members/"+imgname+".png?"+d.getTime()+"')");
+			  jQuery('#bsshow').css("background-image","url('/" + document.location.pathname.split("/")[1] + "/members/"+imgname+".png?"+d.getTime()+"')");
 		      jQuery('#bsshow').show();
 	      });
 	});
