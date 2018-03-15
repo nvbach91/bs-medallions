@@ -109,7 +109,7 @@ var mouseY;
 jQuery(document).ready(function(){
     //jQuery('#bstooltip').html("Click for short biography");
 
-	jQuery(document).mousemove(function(e) {
+	/*jQuery(document).mousemove(function(e) {
 	   mouseX = e.pageX+20; 
 	   mouseY = e.pageY-10;
 		jQuery('#bstooltip').css({
@@ -127,7 +127,7 @@ jQuery(document).ready(function(){
 
 	jQuery(".bpmember").mouseout(function(){
 	  jQuery('#bstooltip').hide();
-	});
+	});*/
 });
  
  
