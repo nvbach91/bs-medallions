@@ -9,7 +9,7 @@
 	
 	function getBio($position, $lang) {
                 $xposition = substr($position, 0, strlen($position)-1);
-                $biotext="Not available yet";
+                $biotext="Description not yet available";
 		global $wpdb;
 		$query = 'SELECT '.$lang.' FROM `bs` WHERE (position=\''.$xposition.'\') ORDER BY id ASC';
 		$res = $wpdb->get_results($query);
@@ -26,7 +26,7 @@
 		if(strlen($biotext) > 1){
 		  return $biotext;
 		}
-		return 'Not available yet';
+		return 'Description not yet available';
 	}
 	
 	

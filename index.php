@@ -33,6 +33,7 @@ function bsm_admin(){
                 . 'WHEN position=\'al\' THEN \'e\' '
                 . 'WHEN position=\'si\' THEN \'f\' '
                 . 'WHEN position=\'ab\' THEN \'g\' '
+                . 'WHEN position=\'lr\' THEN \'h\' '
                 . 'END ASC, id ASC;';
 	$res = $wpdb->get_results($q);
 ?>
@@ -123,10 +124,10 @@ foreach($res as $r){
                   <div class="bsauth">'.$r->auth.'</div>
 				  '.$leadercheck.'
 		  <div class="bsname"><input type="text" value="'.$r->name.'" /></div>
-	          <div class="bspos"'.$notChangeableIfLeader.'>'.getPosOptions($r->position).'</div>
+	      <div class="bspos"'.$notChangeableIfLeader.'>'.getPosOptions($r->position).'</div>
 		  <div class="bspic"><input readonly type="text" value="'.$r->position.$cnt.'" /></div>
-		  <div class="bsen"><input type="text" value="'.replaceQuotes($r->en).'" /></div>
-		  <div class="bscs"><input type="text" value="'.replaceQuotes($r->cs).'" /></div>
+		  <div class="bsen"><textarea rows="3">'.replaceQuotes($r->en).'</textarea></div>
+		  <div class="bscs"><textarea rows="3">'.replaceQuotes($r->en).'</textarea></div>
 		  <div class="bsbtn"><input type="button" value="Save" class="button-primary save"/></div>';
    
     if($lastpos!=='president'&&$lastpos!=='vicepresident'&&$lastpos!=='treasurer'){
@@ -140,12 +141,12 @@ foreach($res as $r){
 	<hr style="margin:50px 0 0 0;"/>
 		<p style="font-size:20px;">Add a new Member</p>
     <div class="" style="margin: 0 0 50px 0;">
-          <div class="bsname"><input type="text" placeholder="Type a name and choose" size="30"/></div>
+          <div class="bsname"><input type="text" placeholder="Type a name and choose process" size="30"/></div>
           <div class="bspos"><?php echo getPosOptions('ad');?></div>
 	      <div class="bsbtn"><input id="bsadd" type="button" value="Add" class="button-primary"/></div>
 	</div>
   </div>
-  <div class="nvbx"><em>Brought to you by nvbach91</em></div>
+  <div class="nvbx"><em>Brought to you by <a href="github.com/nvbach91">github.com/nvbach91</a></em></div>
   <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/bsremove.js"></script>
   <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/bsadd.js"></script>
   <script src="/<?php echo explode("/", $_SERVER['REQUEST_URI'])[1]; ?>/wp-content/plugins/bs-medallions/bssave.js"></script>
@@ -161,7 +162,7 @@ function getFullProcessName($pos){
     switch($pos){
     case "president":     return "President";break;
     case "vicepresident": return "Vice President";break;
-    case "treasurer":       return "Treasurer";break;
+    case "treasurer":     return "Treasurer";break;
     case "ac":            return "Activities";break;
     case "bp":            return "Buddy Program";break;
     case "ex":            return "Exchange+";break;
@@ -175,6 +176,7 @@ function getFullProcessName($pos){
     case "al":            return "Alumni";break;
     case "si":            return "Siesta";break;
     case "ab":            return "Abroad";break;
+    case "lr":            return "Lr";break;
     }
     
     return "Unknown";
@@ -191,29 +193,30 @@ function select($k){
 }
 
 function getPosOptions($pos){
-$a = array(
-        '<option disabled value="president">President</option>',
-	'<option disabled value="vicepresident">Vice President</option checked>',
-	'<option disabled value="treasurer">Treasurer</option>',  
-	'<option value="ad">Administration</option>', 
-	'<option value="bp">Buddy Program</option>',
-	'<option value="fr">Fundraising</option>',
-	'<option value="pr">Public Relations</option>',  
-	'<option value="hr">Human Resources</option>', 
-	'<option value="it">Information Technology</option>',
-	'<option value="ir">International Relations</option>',			  
-	'<option value="ac">Activities</option>',	  
-	'<option value="ex">Exchange+</option>', 
-    '<option value="n2n">Nation 2 Nation</option>',		  
-	'<option value="si">Siesta</option>', 
-	'<option value="ab">Abroad</option>',
-	'<option value="al">Alumni</option>'
-    );
+	$a = array(
+		'<option disabled value="president">President</option>',
+		'<option disabled value="vicepresident">Vice President</option checked>',
+		'<option disabled value="treasurer">Treasurer</option>',  
+		'<option value="ad">Administration</option>', 
+		'<option value="bp">Buddy Program</option>',
+		'<option value="fr">Fundraising</option>',
+		'<option value="pr">Public Relations</option>',  
+		'<option value="hr">Human Resources</option>', 
+		'<option value="it">Information Technology</option>',
+		'<option value="ir">International Relations</option>',			  
+		'<option value="ac">Activities</option>',	  
+		'<option value="ex">Exchange+</option>', 
+		'<option value="n2n">Nation 2 Nation</option>',		  
+		'<option value="si">Siesta</option>', 
+		'<option value="ab">Abroad</option>',
+		'<option value="al">Alumni</option>',
+		'<option value="lr">Local Representative</option>'
+	);
 
 	switch($pos){
 		case "president":     $a[0] = select($a[0]) ;break;
 		case "vicepresident": $a[1] = select($a[1]) ;break;
-		case "treasurer":       $a[2] = select($a[2]) ;break;
+		case "treasurer":     $a[2] = select($a[2]) ;break;
 		case "ad":            $a[3] = select($a[3]) ;break;
 		case "bp":            $a[4] = select($a[4]) ;break;
 		case "fr":            $a[5] = select($a[5]) ;break;
@@ -227,6 +230,7 @@ $a = array(
 		case "si":            $a[13]= select($a[13]);break;
 		case "ab":            $a[14]= select($a[14]);break;
 		case "al":            $a[15]= select($a[15]);break;
+		case "lr":            $a[16]= select($a[16]);break;
 	}
 			
 	$result = '<select>';
@@ -263,17 +267,61 @@ function add_medallions_codes($atts) {
 	$isCS=false;
 	if($a['lang']==='cs'){$isCS=true;}
 	
-	$leaders = getLeaders($isCS);	
-	$process = getProcesses($isCS);	
+	//$leaders = getLeaders($isCS);	
+	$displayProcesses = getDisplayProcesses($isCS);	
 	
     $clickme='More about me';
 	$ecx='Collapse All';
 	if($isCS){$clickme='Víc o mně';$ecx='Sbalit vše';}	
 	$ec = '<div id="e-c" class=""></div><div id="ec">'.$ecx.'</div><div id="bstooltip">'.$clickme.'</div>';	
-	
-	return $ec . ' ' . $leaders . ' ' . $process . 
-	'<script src="/'.explode("/", $_SERVER['REQUEST_URI'])[1].'/wp-content/plugins/bs-medallions/leadertitle.js"></script>'.
+	$navigator = getNavigator();
+
+	return 
+	'<div class="bp-wrapper">' . 
+		$navigator . 
+		'<div id="bp-content">' . 
+			//$leaders . ' ' . 
+			$displayProcesses . 
+		'</div>' .
+	'</div>' .
 	'<script src="/'.explode("/", $_SERVER['REQUEST_URI'])[1].'/wp-content/plugins/bs-medallions/interactions.js"></script>';
+}
+
+
+$processes = array(
+	0  => array( 'bpname'=>'President',              'pr'=>'president' ),
+	1  => array( 'bpname'=>'Vicepresident',          'pr'=>'vicepresident' ),
+	2  => array( 'bpname'=>'Treasurer',              'pr'=>'treasurer' ),
+	3  => array( 'bpname'=>'Activities',             'pr'=>'ac' ),
+	4  => array( 'bpname'=>'Buddy Program',          'pr'=>'bp' ),
+	5  => array( 'bpname'=>'Exchange+',              'pr'=>'ex' ),
+	6  => array( 'bpname'=>'Fundraising',            'pr'=>'fr' ),
+	7  => array( 'bpname'=>'Human Resources',        'pr'=>'hr' ),
+	8  => array( 'bpname'=>'Information Technology', 'pr'=>'it' ),
+	9  => array( 'bpname'=>'International Relations','pr'=>'ir' ),
+	10 => array( 'bpname'=>'Nation 2 Nation',        'pr'=>'n2n'),
+	11 => array( 'bpname'=>'Administration/Správa',  'pr'=>'ad' ),
+	12 => array( 'bpname'=>'Public Relations',       'pr'=>'pr' ),
+	13 => array( 'bpname'=>'Alumni/Rada Starších',   'pr'=>'al' ),
+	14 => array( 'bpname'=>'Siesta',                 'pr'=>'si' ),
+	15 => array( 'bpname'=>'Abroad/Zahraničí',       'pr'=>'ab' ),
+	16 => array( 'bpname'=>'Local Representative',   'pr'=>'lr' )
+);
+
+function getNavigator() {
+	global $processes;
+	$dom = 
+	'<div id="bp-navigator">';
+
+	for ($i = 0; $i < 17; $i++){
+		$active = $i == 0 ? ' active' : '';
+		$p = $processes[$i];
+		$dom = $dom.
+		'<div class="bp-nav-item'.$active.'" pr="'.$p['pr'].'">'.$p['bpname'].'</div>';
+	}
+
+	return $dom.
+	'</div>';
 }
 
 function getLeaderName($pos){	
@@ -283,11 +331,11 @@ function getLeaderName($pos){
 	
 	return $res[0]->name;
 }
-
+/*
 function getLeaders($isCS){
     $bpname = 'notdef';
 	$pr = 'notdef';
-	$leaders = '<div class="leader">';	
+	$leaders = '';	
 	for ($i = 0; $i < 3; $i++){
 	         if($i === 1){$bpname='President';if($isCS){$bpname='Prezident';}$pr='president';$name=getLeaderName($pr);}
 	    else if($i === 0){$bpname='Vice President';if($isCS){$bpname='Viceprezident';}$pr='vicepresident';$name=getLeaderName($pr);}
@@ -303,9 +351,9 @@ function getLeaders($isCS){
 	      </div>
 		</div>';
 	}
-	$leaders = $leaders . '<div id="leaderbio" class="bpbio"></div></div>';
+	$leaders = $leaders . '<div id="leaderbio" class="bpbio"></div>';
 	return $leaders;
-}
+}*/
 
 function getMemberNames($pos){
 	global $wpdb;
@@ -314,26 +362,18 @@ function getMemberNames($pos){
 	return $res;
 }
 
-function getProcesses($isCS){
+function getDisplayProcesses($isCS){
+	global $processes;
     $bpname = 'notdef';
 	$pr = 'notdef';
-	$p = '<div class="bprocess">';
-	for ($i = 0; $i < 13; $i++){
-	         if($i === 0) {$bpname='Activities';             $pr='ac' ;}
-	    else if($i === 1) {$bpname='Buddy Program';          $pr='bp' ;}
-	    else if($i === 2) {$bpname='Exchange+';              $pr='ex' ;}
-	    else if($i === 3) {$bpname='Fundraising';            $pr='fr' ;}
-	    else if($i === 4) {$bpname='Human Resources';        $pr='hr' ;}
-	    else if($i === 5) {$bpname='Information Technology'; $pr='it' ;}
-	    else if($i === 6) {$bpname='International Relations';$pr='ir' ;}
-	    else if($i === 7) {$bpname='Nation 2 Nation';        $pr='n2n';}
-	    else if($i === 8) {$bpname='Administration';         $pr='ad' ;if($isCS){$bpname='Správa';}}
-	    else if($i === 9) {$bpname='Public Relations';       $pr='pr' ;}
-	    else if($i === 10){$bpname='Alumni';                 $pr='al' ;if($isCS){$bpname='Rada Starších';}}
-	    else if($i === 11){$bpname='Siesta';                 $pr='si' ;}
-	    else if($i === 12){$bpname='Abroad';                 $pr='ab' ;if($isCS){$bpname='Zahraničí';}}
+	$p = '';
+	for ($i = 0; $i < 17; $i++){
+		$process = $processes[$i];
+		$bpname = $process['bpname'];
+		$pr = $process['pr'];
+		$isDisplayed = $i == 0 ? ' active' : '';
 		$p = $p.'
-		<div class="bprocess">
+		<div class="bprocess '.$isDisplayed.'" pr="'.$pr.'">
 		  <div class="bpname">'.$bpname.'</div>
 		  <div class="bpmembers">';
 		  

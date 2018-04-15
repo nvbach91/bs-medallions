@@ -13,8 +13,8 @@ function bssave(t) {
     if (pic.substr(0, pic.length - 5) !== pos) {
         //alert("Sorry, changing processes is not supported yet! Please delete the medallion and then add it to the actual process");
         changeORsave = "change";
-        if(currentNumberOfMemberInDestinationProcess>=9){
-            alert("Sorry, each process can only have max 9 members");
+        if(currentNumberOfMemberInDestinationProcess>=99){
+            alert("Sorry, each process can only have max 99 members");
             return;
         }
         

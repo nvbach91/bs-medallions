@@ -19,8 +19,8 @@ function bsadd($auth, $name, $pos) {
     $wpdb->query($qx);
     $numx = $wpdb->num_rows;
     if ($pos !== 'president' && $pos !== 'vicepresident' && $pos !== 'treasurer') {
-        if ($numx > 8) {
-            return 'not added! max 9 members per process, sorry';
+        if ($numx > 98) {
+            return 'not added! max 99 members per process, sorry';
         }
     } else {
         if ($numx > 0) {
