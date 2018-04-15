@@ -94,7 +94,7 @@ function showlbio(pid){
 
 function showpbio(pid){
   var biotext= ajax_getbio(pid);
-  var process=pid.substr(0,pid.length-1);
+  var process=pid.replace(/[0-9]/g, "");
 
   var pb = jQuery("div[class='bpbio "+process+"']");
   pb.hide();

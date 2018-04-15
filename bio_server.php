@@ -8,7 +8,7 @@
     }
 	
 	function getBio($position, $lang) {
-                $xposition = substr($position, 0, strlen($position)-1);
+                $xposition = preg_replace("/[^a-zA-Z]/", "", $position );
                 $biotext="Description not yet available";
 		global $wpdb;
 		$query = 'SELECT '.$lang.' FROM `bs` WHERE (position=\''.$xposition.'\') ORDER BY id ASC';
@@ -17,7 +17,7 @@
 		if($xposition==='president' || $xposition==='vicepresident' || $xposition==='treasurer'){
                         $biotext = $res[0]->$lang; 
                 }else{           
-			$seq = intval(substr($position,strlen($position)-1,1));
+			$seq = intval(preg_replace("/[^0-9]/", "", $position ));
                         
                         $biotext = $res[$seq-1]->$lang . ' ';
                         
