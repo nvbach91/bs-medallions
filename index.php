@@ -27,7 +27,7 @@ function bsm_admin() {
                 . 'WHEN position=\'hr\' THEN \'8\' '
                 . 'WHEN position=\'it\' THEN \'9\' '
                 . 'WHEN position=\'ir\' THEN \'a\' '
-                . 'WHEN position=\'n2n\' THEN \'b\' '
+                . 'WHEN position=\'nn\' THEN \'b\' '
                 . 'WHEN position=\'ad\' THEN \'c\' '
                 . 'WHEN position=\'pr\' THEN \'d\' '
                 . 'WHEN position=\'lr\' THEN \'e\' '
@@ -120,7 +120,7 @@ function getFullProcessName($pos){
     case "hr":            return "Human Resources";break;
     case "it":            return "Information Technology";break;
     case "ir":            return "International Relations";break;
-    case "n2n":           return "Nation 2 Nation";break;
+    case "nn":            return "Nation 2 Nation";break;
     case "ad":            return "Administraion";break;
     case "pr":            return "Public Relations";break;
     case "lr":            return "Local Representative";break;
@@ -152,7 +152,7 @@ function getPosOptions($pos){
         '<option value="ir">International Relations</option>',
         '<option value="ac">Activities</option>',
         '<option value="ex">Exchange+</option>',
-        '<option value="n2n">Nation 2 Nation</option>',
+        '<option value="nn">Nation 2 Nation</option>',
         '<option value="lr">Local Representative</option>'
     );
 
@@ -169,7 +169,7 @@ function getPosOptions($pos){
         case "ir":            $a[9] = select($a[9]) ;break;
         case "ac":            $a[10]= select($a[10]);break;
         case "ex":            $a[11]= select($a[11]);break;
-        case "n2n":           $a[12]= select($a[12]);break;
+        case "nn":            $a[12]= select($a[12]);break;
         case "lr":            $a[13]= select($a[13]);break;
     }
     $result = '<select>';
@@ -223,7 +223,7 @@ $processes = array(
     7  => array( 'bpname'=>'Human Resources',        'pr'=>'hr' ),
     8  => array( 'bpname'=>'Information Technology', 'pr'=>'it' ),
     9  => array( 'bpname'=>'International Relations','pr'=>'ir' ),
-    10 => array( 'bpname'=>'Nation 2 Nation',        'pr'=>'n2n'),
+    10 => array( 'bpname'=>'Nation 2 Nation',        'pr'=>'nn'),
     11 => array( 'bpname'=>'Administration',         'pr'=>'ad' ),
     12 => array( 'bpname'=>'Public Relations',       'pr'=>'pr' ),
     13 => array( 'bpname'=>'Local Representative',   'pr'=>'lr' )
@@ -273,6 +273,9 @@ function getDisplayProcesses($isCS){
         $p = $p.
         '<div class="bprocess '.$isDisplayed.'" pr="'.$pr.'">
           <div class="bpname">'.$bpname.'</div>
+          <div class="bpleader">
+            <div class="bpbio '.$pr.'">...</div>
+          </div>
           <div class="bpmembers">';
           
         $names = getMemberNames($pr);
@@ -289,7 +292,6 @@ function getDisplayProcesses($isCS){
         }
         $p = $p.
         '</div>
-          <div class="bpbio '.$pr.'"></div>
         </div>';
     }
     $p = $p. '</div>';

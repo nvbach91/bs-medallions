@@ -25,10 +25,7 @@ function getAbbrProcessName(pos) {
         case "International Relations": return "ir"; break;
         case "Activities": return "ac"; break;
         case "Exchange+": return "ex"; break;
-        case "Nation 2 Nation": return "n2n"; break;
-        case "Siesta": return "si"; break;
-        case "Abroad": return "ab"; break;
-        case "Alumni": return "al"; break;
+        case "Nation 2 Nation": return "nn"; break;
     }
 
     return "Unknown";

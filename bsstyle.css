@@ -20,23 +20,23 @@
 
 .bpmembers {
     width: 100%;
-}
-
-.bpmembers img {
-    height: 150px;
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /*.leader img{width: 200px !important;height: 200px !important; margin-right:0px;}*/
 
 .bpname {
-    background: #08a5de;
+    background: #055598;
     color: white;
     cursor: pointer;
     transition: background .25s ease, color .5s ease;
 }
 
 .bpname:hover {
-    background: #08a5de;
+    background: #055598;
     color: white;
 }
 
@@ -47,22 +47,25 @@
 .bpmember {
     display: inline-block;
     position: relative;
+    margin: 0 2px;
+}
+
+.bpleader .bpmember {
     cursor: pointer;
 }
 
 .membercap {
     opacity: 1;
-    width: 100%;
-    position: absolute;
-    bottom: 0px;
-    padding: 3px 0;
     color: white;
-    background: rgba(8, 165, 222, 0.7);
-    transition: opacity .5s ease;
+    background: #055598;
 }
 
 .bpmember.active .membercap {
-    background: #08a5de;
+    background: #055598;
+}
+
+.bpmembers img {
+    height: 150px;
 }
 
 .bpimg {
@@ -71,17 +74,28 @@
     width: 150px;
     height: 150px;
 }
+.bpmembers .bpimg {
+    width: 100px;
+    height: 100px;
+}
+.bpmembers img {
+    height: 100px;
+}
+.bpmembers .membercap {
+    font-size: 10px
+}
+.bpmembers .bpmember {
+    width: 100px;
+}
 
 .bpimg:hover+.membercap {
     opacity: 1;
 }
 
 .bpimg img {
-    -webkit-filter: grayscale(1);
-    -moz-filter: grayscale(1);
-    filter: grayscale(1);
-    transition: -webkit-filter .5s ease, -moz-filter .5s ease, filter .5s ease, opacity .5s ease;
     opacity: .8;
+    transition: opacity .3s ease;
+    
 }
 
 .bpimg img:hover {
@@ -92,10 +106,12 @@
 }
 
 .bpbio {
-    text-align: justify;
+    margin-top: 5px;
+    text-align: center;
     color: white;
-    background: #08a5de;
+    background: #055598;
     padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .bpcolor {
@@ -110,7 +126,7 @@
     z-index: 10000;
     position: absolute;
     padding: 10px;
-    background: #08a5de;
+    background: #055598;
     white-space: nowrap;
     border-radius: 5px;
 }
@@ -139,6 +155,6 @@
 }
 
 .bp-nav-item.active, .bp-nav-item:hover {
-    background-color: #08a5de;
+    background-color: #055598;
     color: white;
 }
