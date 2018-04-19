@@ -64,6 +64,7 @@ jQuery(document).ready(function ($) {
         });
     });
     var presidentProcess = $('.bprocess[pr=president]');
+    presidentProcess.find('.bpname').text('Leadership');
     processWrapper.find('.bprocess[pr=vicepresident],.bprocess[pr=treasurer]').each(function () {
         var bpmember = $(this).find(".bpmember");
         presidentProcess.find('.bpbio').before(bpmember);
