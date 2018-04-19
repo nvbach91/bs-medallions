@@ -1,4 +1,4 @@
-#ec, .leader {
+.leader {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -28,17 +28,14 @@
 
 /*.leader img{width: 200px !important;height: 200px !important; margin-right:0px;}*/
 
-#ec, .bpname {
+.bpname {
     background: #08a5de;
     color: white;
     cursor: pointer;
     transition: background .25s ease, color .5s ease;
 }
 
-#ec:hover, .bpname:hover
-/*, .bpname.no*/
-
-    {
+.bpname:hover {
     background: #08a5de;
     color: white;
 }
