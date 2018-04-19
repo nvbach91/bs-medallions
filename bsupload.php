@@ -19,11 +19,11 @@ if (isset($_FILES["file"]["type"])) {
     $temporary = explode(".", $_FILES["file"]["name"]);
     $file_extension = end($temporary);
     if ((    ($_FILES["file"]["type"] == "image/png") 
-	      || ($_FILES["file"]["type"] == "image/PNG")
-	      || ($_FILES["file"]["type"] == "image/jpg") 
-		  || ($_FILES["file"]["type"] == "image/jpeg") 
-		  || ($_FILES["file"]["type"] == "image/JPG")
-		  || ($_FILES["file"]["type"] == "image/JPEG")
+          || ($_FILES["file"]["type"] == "image/PNG")
+          || ($_FILES["file"]["type"] == "image/jpg") 
+          || ($_FILES["file"]["type"] == "image/jpeg") 
+          || ($_FILES["file"]["type"] == "image/JPG")
+          || ($_FILES["file"]["type"] == "image/JPEG")
             ) && ($_FILES["file"]["size"] <= 1048576)
             && in_array($file_extension, $validextensions)) {
         if ($_FILES["file"]["error"] > 0) {

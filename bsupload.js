@@ -36,13 +36,13 @@ function initDragDrop(z) {
                     reason = "File is too big (max 1024 kB)";
                     reason += "\n\n\"" + name + "\" (" + size + " kB)";
                     break;
-                } else if (!endsWith(name, ".png")&&!endsWith(name, ".jpg")&&!endsWith(name, ".jpeg")&&!endsWith(name, ".JPG")&&!endsWith(name, ".JPEG")&&!endsWith(name, ".PNG")) {
+                } else if (!endsWith(name, ".png") && !endsWith(name, ".jpg") && !endsWith(name, ".jpeg") && !endsWith(name, ".JPG") && !endsWith(name, ".JPEG") && !endsWith(name, ".PNG")) {
                     isValidToUpload = false;
                     reason = "Not a valid file extension (must be .png, .jpg, .JPG, .jpeg or .JPEG)";
                     reason += "\n\n\"" + name + "\"";
                     break;
                 } else {
-                    formData.append('file', e.dataTransfer.files[i]);                    
+                    formData.append('file', e.dataTransfer.files[i]);
                     formData.append('filename', z.value);
                     isValidToUpload = true;
                 }
@@ -50,13 +50,13 @@ function initDragDrop(z) {
         }
 
         xhr.onload = function () {
-            if(this.responseText === "uploaded ok"){
+            if (this.responseText === "uploaded ok") {
                 jQuery("body").append("<div class=\"notice\">Picture Uploaded (:</div>");
-                var notice=jQuery(".notice");
-                setTimeout(function(){notice.fadeOut(1000);},2000);
-                setTimeout(function(){notice.remove();},3000);
+                var notice = jQuery(".notice");
+                setTimeout(function () { notice.fadeOut(1000); }, 2000);
+                setTimeout(function () { notice.remove(); }, 3000);
 
-            }else{
+            } else {
                 alert("Something went wrong when uploading, please try again later: " + this.responseText);
             }
         };

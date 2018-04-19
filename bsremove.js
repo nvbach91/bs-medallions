@@ -25,12 +25,12 @@ function xRemove(t) {
     var bsrow = jQuery(t).parent().parent();
     var id = bsrow.children().eq(0).html();
     var auth = bsrow.children().eq(1).html();
-    var pic = bsrow.children().eq(4).children().eq(0).val()+".png";
+    var pic = bsrow.children().eq(4).children().eq(0).val() + ".png";
     var result = "no resp";
     jQuery.ajax({
         async: false,
         url: "/" + document.location.pathname.split("/")[1] + "/wp-content/plugins/bs-medallions/bsremove.php",
-        data: {id: id, auth: auth, pic: pic},
+        data: { id: id, auth: auth, pic: pic },
         type: "post",
         success: function (resp) {
             result = resp;

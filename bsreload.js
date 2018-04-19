@@ -1,11 +1,11 @@
-jQuery(document).ready(function(){
-    
-    jQuery("#bsreload").attr("onclick","bsreload(this)");
-    
-    
+jQuery(document).ready(function () {
+
+    jQuery("#bsreload").attr("onclick", "bsreload(this)");
+
+
 });
 
-function bsreload(t){
+function bsreload(t) {
     location.reload();
 }
 
