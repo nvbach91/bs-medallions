@@ -30,7 +30,6 @@ function bsm_admin() {
                 . 'WHEN position=\'nn\' THEN \'b\' '
                 . 'WHEN position=\'ad\' THEN \'c\' '
                 . 'WHEN position=\'pr\' THEN \'d\' '
-                . 'WHEN position=\'lr\' THEN \'e\' '
                 . 'END ASC, id ASC;';
     $res = $wpdb->get_results($q);
 ?>
@@ -118,12 +117,11 @@ function getFullProcessName($pos){
     case "ex":            return "Exchange+";break;
     case "fr":            return "Fundraising";break;
     case "hr":            return "Human Resources";break;
-    case "it":            return "Information Technology";break;
+    case "it":            return "IT";break;
     case "ir":            return "International Relations";break;
     case "nn":            return "Nation 2 Nation";break;
     case "ad":            return "Administraion";break;
     case "pr":            return "Public Relations";break;
-    case "lr":            return "Local Representative";break;
     }
     
     return "Unknown";
@@ -148,12 +146,11 @@ function getPosOptions($pos){
         '<option value="fr">Fundraising</option>',
         '<option value="pr">Public Relations</option>',
         '<option value="hr">Human Resources</option>',
-        '<option value="it">Information Technology</option>',
+        '<option value="it">IT</option>',
         '<option value="ir">International Relations</option>',
         '<option value="ac">Activities</option>',
         '<option value="ex">Exchange+</option>',
         '<option value="nn">Nation 2 Nation</option>',
-        '<option value="lr">Local Representative</option>'
     );
 
     switch($pos){
@@ -170,7 +167,6 @@ function getPosOptions($pos){
         case "ac":            $a[10]= select($a[10]);break;
         case "ex":            $a[11]= select($a[11]);break;
         case "nn":            $a[12]= select($a[12]);break;
-        case "lr":            $a[13]= select($a[13]);break;
     }
     $result = '<select>';
         if($pos==="president"||$pos==="vicepresident"||$pos==="treasurer"){
@@ -221,12 +217,11 @@ $processes = array(
     5  => array( 'bpname'=>'Exchange+',              'pr'=>'ex' ),
     6  => array( 'bpname'=>'Fundraising',            'pr'=>'fr' ),
     7  => array( 'bpname'=>'Human Resources',        'pr'=>'hr' ),
-    8  => array( 'bpname'=>'Information Technology', 'pr'=>'it' ),
+    8  => array( 'bpname'=>'IT',                     'pr'=>'it' ),
     9  => array( 'bpname'=>'International Relations','pr'=>'ir' ),
     10 => array( 'bpname'=>'Nation 2 Nation',        'pr'=>'nn'),
     11 => array( 'bpname'=>'Administration',         'pr'=>'ad' ),
-    12 => array( 'bpname'=>'Public Relations',       'pr'=>'pr' ),
-    13 => array( 'bpname'=>'Local Representative',   'pr'=>'lr' )
+    12 => array( 'bpname'=>'Public Relations',       'pr'=>'pr' )
 );
 
 function getLeaderName($pos){
